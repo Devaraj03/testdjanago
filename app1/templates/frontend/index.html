@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+</head>
+<body>
+    <h1>Hello world</h1>
+    <a href="{% url 'create' %}">add comic</a>
+    <ul>
+    {% for comic in comic %}
+    <li>
+    <h3>{{ comic.title }}</h3>
+    <h4>{{ comic.author }}</h4>
+    {% if comic.img %}
+            <img src="{{ comic.img.url }}" width="200" />
+    {% else %}
+            <p><i>No image uploaded</i></p>
+    {% endif %}
+    <button><a href="{% url 'update' comic.pk %}">Edit</a></button>
+    <button><a href="{% url 'delete' comic.pk %}">Delete</a></button>
+</li>    
+</ul>
+{% endfor %}
+</body>
+</html>
